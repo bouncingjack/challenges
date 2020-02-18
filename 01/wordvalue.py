@@ -10,15 +10,10 @@ def load_words():
 def calc_word_value(word):
     """Calculate the value of the word entered into function
     using imported constant mapping LETTER_SCORES"""
+    
     score = 0
-    for letter in word:      
-        try:
-            score += LETTER_SCORES[letter.capitalize()]
-        except KeyError as e:
-            if letter == '-':
-                pass
-            else:
-                raise(e)
+    for letter in [x.capitalize() for x in word if x.capitalize() in LETTER_SCORES.keys()]:      
+        score += LETTER_SCORES[letter.capitalize()]
     return score
 
 def max_word_value(words=load_words()):
